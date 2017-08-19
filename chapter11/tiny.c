@@ -197,7 +197,7 @@ void server_dynamic(int fd,char *filename,char *cgiargs)
     if(Fork() == 0){
         setenv("QUERY_STRING",cgiargs,1);
         Dup2(fd,STDOUT_FILENO);
-        Execve(filename,emptylist,environ); /*Run CGI program */
+        execve(filename,emptylist,environ); /*Run CGI program */
     }
     Wait(NULL); /* Parent waits for and reaps child */
 }
